@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { Menssage } from './Menssage';
 import './effects.css'
 
 export const SimpleForm = () => {
@@ -12,15 +13,15 @@ export const SimpleForm = () => {
       const {name,email} = formState;
 
       useEffect(( ) =>{ 
-        console.log('Hey!')
+        // console.log('Hey!')
       },[] )   //solo se ejecutara una vez en console
 
       useEffect(( ) =>{ 
-        console.log('formState cambio')
+        // console.log('formState cambio')
       },[formState] )//sirve para escuchar cambios especificos de nuestro state en este caso "formState"
 
       useEffect(( ) =>{ 
-        console.log('email cambio')
+        // console.log('email cambio')
       },[email] ) //en este caso "email" recordar que ya lo tenemos desestructurado
 
       //es una funcion para que el input se escriba en tiempo real
@@ -64,6 +65,7 @@ export const SimpleForm = () => {
                     onChange={handleInputChange}
                 />
             </div>
+            {name === '123' && <Menssage/>}  
         </>
     )
 }
