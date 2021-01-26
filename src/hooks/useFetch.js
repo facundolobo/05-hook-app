@@ -6,6 +6,8 @@ export const useFetch = (url) => {
         
         useEffect(() => {
             
+            setState({data:null , loading: true,error:null}); //para que aparesca el "loading" antes de cargar la siguiente cita
+            
             fetch( url )
                 .then(resp => resp.json())
                 .then(data => {
