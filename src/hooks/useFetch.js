@@ -20,8 +20,7 @@ export const useFetch = (url) => {
             fetch( url )
                 .then(resp => resp.json())
                 .then(data => {
-                    
-                    
+                
                     //funcion que espera para ejecutar
                     //setTimeout(() => {
                         if(isMounted.current){ //si es true, significa q esta mantado 
@@ -31,7 +30,7 @@ export const useFetch = (url) => {
                             error: null,
                             data
                             })
-                            console.log("setState SI se llamo");
+                           // console.log("setState SI se llamo");
                         }
                         //  else{
                         //     console.log("setState NO se llamo");
