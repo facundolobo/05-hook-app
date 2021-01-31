@@ -2,7 +2,11 @@ import { useState } from "react"
 
 export const useForm = (initialState = {}) => {
 
-    const [value, setValue] = useState(initialState)
+    const [value, setValue] = useState(initialState);
+        //funcion para borrar el formulario "vaciar input"
+        const reset = () =>{ 
+            setValue(initialState);
+        }
 
         //es una funcion para que el input se escriba en tiempo real
           const handleInputChange=({target}) =>{ //desestructuramos target para obtener los parametros
@@ -18,6 +22,6 @@ export const useForm = (initialState = {}) => {
         //------------------------------------
         
 
-return [value, handleInputChange];
+return [value, handleInputChange,reset];
 
 }

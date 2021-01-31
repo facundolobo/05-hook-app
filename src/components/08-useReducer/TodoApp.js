@@ -1,27 +1,73 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { todoReducer } from './todoReducer';
 import './style.css';
+import { useForm } from '../../hooks/useForm';
 
-const initialState =[{
-    id: new Date().getTime(),
-    desc: 'Aprender React', 
-    done: false  //done = hecho
-}]
+
+
+const init =() =>{
+  
+    //si existe el archivo en local store lo regresa, sino []
+    return JSON.parse(localStorage.getItem('todos')) || [];;
+  
+    // return [{
+    //     id: new Date().getTime(),
+    //     desc: 'Aprender React', 
+    //     done: false  //done = hecho
+    // }]
+}
 
 
 export const TodoApp = () => {
 
-    const [todos, dispatch] = useReducer(todoReducer, initialState);
+    const [todos, dispatch] = useReducer(todoReducer, [], init);
 
-    console.log(todos);
+    const [{description}, handleInputChange, reset]=useForm({
+        description: ''
 
+    });
+
+
+    useEffect(()=>{
+        localStorage.setItem('todos', JSON.stringify(todos))
+    },[todos]);
+
+    const handleDelete = (todoId)=>{
+        //e.preventDefault();//evista le posteo de formulario o reflesh
+        console.log(todoId);
+
+        //crear la action
+        
+        
+        
+        const action = {
+            type:'delete',
+            payload: todoId //envia el id de la tarea asociada
+        }
+        // dispatch
+        dispatch( action );
+    }   
+
+    //console.log(description);
+    const handleToggle=(todoId)=>{
+        dispatch({ //forma corta 
+            type: 'toggle',
+            payload:todoId
+        })
+    }
     const handleSubmit = (e) =>{
+
         e.preventDefault();//evista le posteo de formulario o reflesh
-        console.log('nueva tarea');
+
+        //funcion si no escribio nada no lo guarda
+        if(description.trim().length <=1){
+            return;
+        }
+
 
         const newTodo ={
             id: new Date().getTime(),
-            desc: 'Nueva tarea', 
+            desc: description, 
             done: false  //done = hecho
         };
 
@@ -30,6 +76,7 @@ export const TodoApp = () => {
             payload: newTodo
         }
         dispatch( action );
+        reset(); //borra lo que estaba en el input
 
     }
 
@@ -46,8 +93,16 @@ export const TodoApp = () => {
                             key={todo.id}
                             className=" list-group-item"
                         > 
-                            <p className="text-center ">{i +1}. {todo.desc} </p>
-                            <button className="btn btn-danger">
+                            <p 
+                                className={`${todo.done && 'complete'}`}
+                                onClick={()=>handleToggle(todo.id)}
+                            >
+                                {i +1}. {todo.desc} 
+                            </p>
+                            <button 
+                            className="btn btn-danger"
+                            onClick={()=>handleDelete(todo.id)} //envia el id de la tarea asociada
+                            >
                                 Borrar</button> 
 
                         </li>
@@ -71,6 +126,9 @@ export const TodoApp = () => {
                         className="form-control"
                         placeholder="aprender..."
                         autoComplete="off"
+
+                        value={description}
+                        onChange={handleInputChange}
                     />
                     <button 
                     type="submit"
