@@ -11,9 +11,27 @@ const initialState =[{
 
 export const TodoApp = () => {
 
-    const [todos] = useReducer(todoReducer, initialState);
+    const [todos, dispatch] = useReducer(todoReducer, initialState);
 
     console.log(todos);
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();//evista le posteo de formulario o reflesh
+        console.log('nueva tarea');
+
+        const newTodo ={
+            id: new Date().getTime(),
+            desc: 'Nueva tarea', 
+            done: false  //done = hecho
+        };
+
+        const action = {
+            type:'add',
+            payload: newTodo
+        }
+        dispatch( action );
+
+    }
 
     return (
         <div className="row"> 
@@ -28,7 +46,7 @@ export const TodoApp = () => {
                             key={todo.id}
                             className=" list-group-item"
                         > 
-                            <p className="text-center complete">{i +1}. {todo.desc} </p>
+                            <p className="text-center ">{i +1}. {todo.desc} </p>
                             <button className="btn btn-danger">
                                 Borrar</button> 
 
@@ -39,14 +57,14 @@ export const TodoApp = () => {
 
             </div>
             {/*segunda columna */}
-            <div className="col-4">
+            <div className="col-5">
                 <h4>
                     agregar TODO
                 </h4>
                 <hr/>
 
                 {/* formulario apra agregar una tarea */}
-                <form>
+                <form onSubmit={handleSubmit}>
                     <input 
                         type="text"
                         name="description"
@@ -55,6 +73,7 @@ export const TodoApp = () => {
                         autoComplete="off"
                     />
                     <button 
+                    type="submit"
                     className="btn btn-outline-primary mt-1 btn-block"
                     >
                         Agregar
