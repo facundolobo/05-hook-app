@@ -17,7 +17,6 @@ export const MainApp = () => {
              * me sirve para proveer informacion alo alrgo de 
              * todos sus componentes hijos
               */}
-
                 <AppRouter/>
             </UserContext.Provider>
        

@@ -4,7 +4,6 @@ import React from 'react'
 import { Link,NavLink } from "react-router-dom"; //importar para utilizarlos 
 //la diferencia entre estos es q navLink es que peude establecer una clase si el URL 
 //coincide con el Path
-
 export const NavBar = () => {
     return (  //codigo cipoado de https://getbootstrap.com/docs/5.0/components/navbar/   renombre className y los link
      

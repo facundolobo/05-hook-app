@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { UserContext } from './UserConstex'
 
-
 export const HomeScreen = () => {
 
     const {user} = useContext(UserContext) //en el use "useContext" buscamos un "UserContext"
