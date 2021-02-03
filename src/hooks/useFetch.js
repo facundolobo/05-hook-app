@@ -22,7 +22,7 @@ export const useFetch = (url) => {
                 .then(data => {
                 
                     //funcion que espera para ejecutar
-                    //setTimeout(() => {
+                    // setTimeout(() => {
                         if(isMounted.current){ //si es true, significa q esta mantado 
                         
                             setState({
@@ -36,7 +36,13 @@ export const useFetch = (url) => {
                         //     console.log("setState NO se llamo");
                         // }
                         
-                    //}, 4000); //espera 4 segundo
+                    // }, 4000); //espera 4 segundo
+            }).catch(()=>{
+                setState({
+                    data:null,
+                    loading:false,
+                    error:'No se pudo cargar la info'
+                })
             })
         }, [url]) 
 
