@@ -3,6 +3,7 @@ import { todoReducer } from './todoReducer';
 import { useForm } from '../../hooks/useForm';
 import {TodoItem} from './TodoItem.js'
 import { TodoAdd } from './TodoAdd';
+import { TodoList } from './TodoList';
 
 import './style.css';
 
@@ -72,7 +73,7 @@ export const TodoApp = () => {
             
             <div className="col-7">
             
-                <TodoItem 
+                <TodoList
                 todos={todos} 
                 handleDelete = {handleDelete} 
                 handleToggle={handleToggle} 
