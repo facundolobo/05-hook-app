@@ -14,7 +14,7 @@ export const MainApp = () => {
                 user,
                 setUser
             }}> {/**asi pongo a UserContext como componente superior, contextrProvider 
-             * me sirve para proveer informacion alo alrgo de 
+             * me sirve para proveer informacion a lo largo de 
              * todos sus componentes hijos
               */}
                 <AppRouter/>

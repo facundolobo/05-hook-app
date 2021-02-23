@@ -12,7 +12,7 @@ export const TodoAdd = ({handleAddTodo}) => {
 
     const handleSubmit = (e) =>{
 
-        e.preventDefault();//evista le posteo de formulario o reflesh
+        e.preventDefault();//evita el posteo de formulario o reflesh
 
         //funcion si no escribio nada no lo guarda
         if(description.trim().length <=1){
