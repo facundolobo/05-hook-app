@@ -9,7 +9,7 @@ import { UserContext } from '../../../components/09-useContext/UserConstex';
  describe('Pruebas en <LoginScreen/>', () => {
 
     const setUser= jest.fn(); //creamos la funcion
-        //wrapper //mount
+        //wrapper //mount no funciona
      const wrapper= mount( 
 
         <UserContext.Provider value={{ //constexto
