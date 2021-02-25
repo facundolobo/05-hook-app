@@ -8,7 +8,7 @@ const user =  {
     id:1,
     name:'Fernando'
 }
-
+    //ERROR MOUNT
     const wrapper=mount(
         <UserContext.Provider value={{
             user
